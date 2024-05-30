@@ -10,7 +10,9 @@ function Hero() {
       <section className="container my-20 flex items-center justify-between text-blue-500">
         <div>
           <div className="mb-7 flex flex-col gap-2">
-            <h2 className="text-7xl font-bold tracking-wide">I'm mwahyusrg</h2>
+            <h2 className="text-7xl font-bold tracking-wide">
+              I&rsquo;m mwahyusrg
+            </h2>
             <p className="text-2xl tracking-wide text-gray-900">
               fullstack web developer
             </p>
