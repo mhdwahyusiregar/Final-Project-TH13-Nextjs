@@ -1,7 +1,14 @@
 import { ReactNode } from "react";
 import Image from "next/image";
 
-async function getData(id: string) {
+interface Pokemon {
+  name: string;
+  imageUrl: string;
+  description: string;
+  stats: { [key: string]: number };
+}
+
+async function getData(id: string): Promise<Pokemon> {
   const response = await fetch(`https://pokeapi.deno.dev/pokemon/${id}`);
   if (!response.ok) {
     throw new Error(`Failed to fetch data for ID: ${id}`);
@@ -15,7 +22,7 @@ export default async function DetailPokemon({
   params: { id: string };
 }): Promise<ReactNode> {
   try {
-    const pokemon = await getData(params.id);
+    const pokemon: Pokemon = await getData(params.id);
 
     return (
       <section className="flex h-screen items-center justify-center bg-gray-200 py-8">
@@ -38,7 +45,7 @@ export default async function DetailPokemon({
                 {pokemon.description}
               </p>
               <hr />
-              <h2 className="text-3xl font-semibold">Energy :</h2>
+              <h2 className="text-3xl font-semibold">Energy:</h2>
               <ul>
                 {Object.entries(pokemon.stats).map(([stat, value]) => (
                   <li key={stat}>
